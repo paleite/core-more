@@ -1,0 +1,19 @@
+{
+  "name": "core-more",
+  "version": "0.0.0",
+  "authors": [
+    "Patrick Aleite <patrick.aleite@trustly.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "devDependencies": {
+    "normalize.css": "~3.0.1"
+  }
+}

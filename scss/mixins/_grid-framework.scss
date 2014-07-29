@@ -1,0 +1,40 @@
+// Framework grid generation
+
+@mixin make-grid-columns($i: 1, $list: ".col-#{$i}") {
+  @for $i from (1 + 1) through $grid-columns {
+    $list: "#{$list}, .col-#{$i}";
+  }
+  $list: "#{$list}, .col-auto";
+
+  #{$list} {
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Inner gutter via padding
+    padding-left:  ($grid-gutter-width / 2);
+    padding-right: ($grid-gutter-width / 2);
+  }
+}
+
+
+@mixin calc-grid-column($index) {
+  @if ($index > 0) {
+    .col-#{$index} {
+      flex-basis: percentage(($index / $grid-columns));
+    }
+  }
+}
+
+@mixin loop-grid-columns($columns) {
+  @for $i from 0 through $columns {
+    @include calc-grid-column($i);
+  }
+  .col-auto {
+    flex: 1 1 0;
+  }
+}
+
+
+// Create grid
+@mixin make-grid() {
+  @include loop-grid-columns($grid-columns);
+}
