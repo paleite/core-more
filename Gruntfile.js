@@ -19,6 +19,29 @@ module.exports = function(grunt) {
       }
     },
 
+    csslint: {
+      options: {
+        csslintrc: '.csslintrc'
+      },
+      dist: {
+        expand: true,
+        cwd: 'dist/',
+        src: ['*.css'],
+      }
+    },
+
+    csscomb: {
+      options: {
+        config: 'csscomb.json'
+      },
+      dist: {
+        expand: true,
+        cwd: 'dist/',
+        src: ['*.css'],
+        dest: 'dist/'
+      }
+    },
+
     autoprefixer: {
       core: {
        options: {
@@ -42,11 +65,11 @@ module.exports = function(grunt) {
  }
 });
 
-    // These plugins provide necessary tasks.
-    require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
+  // These plugins provide necessary tasks.
+  require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
   // CSS distribution task.
-  grunt.registerTask('dist-css', ['sass', 'autoprefixer']);
+  grunt.registerTask('dist-css', ['sass', 'autoprefixer', 'csscomb', 'csslint']);
 
   // Default task  
   grunt.registerTask('default', ['dist-css']);
