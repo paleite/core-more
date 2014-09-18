@@ -100,6 +100,10 @@ module.exports = function( grunt ) {
 			sass: {
 				files: "scss/**/*.scss",
 				tasks: "dist-css"
+			},
+			js: {
+				files: [ "js/**/*.js", "Gruntfile.js" ],
+				tasks: "dist-js"
 			}
 		}
 	});
