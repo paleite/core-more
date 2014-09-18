@@ -2,14 +2,15 @@
 // Core
 // --------------------------------------------------
 
+// Normalize -- Re-enable this please
+//@import "normalize";
+
 // Common variables and mixins
 @import "common";
 
-// Normalize
-@import "normalize";
-
 // Global styles for box-sizing, typography, links, etc
 @import "scaffolding";
+@import "type";
 
 // Navigation
 @import "nav";

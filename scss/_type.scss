@@ -1,0 +1,67 @@
+//
+// Typography
+// --------------------------------------------------
+// Inspired by Firefox OS typeface https://www.mozilla.org/en-US/styleguide/products/firefox-os/typeface/
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 14px;
+}
+
+// Regular / 400	Headers	Heading example
+h1,
+h2,
+p,
+ul,
+.small,
+.mini,
+.micro {
+	font-family: $font-family-regular;
+	font-weight: $font-weight-regular;
+}
+
+h1 {
+	font-size: 2.5rem;
+}
+
+// Regular / 400	Subheaders, Dialog titles	Subheading example
+h2 {
+	font-size: 1.6rem;
+}
+
+p,ul {
+	// Regular / 400	Body text, lists, default size	Body example
+	font-size: 1.9rem;
+}
+
+// Light / 300	Dialogs	Body Large example
+.large {
+	font-size: 2.3rem;
+	font-family: $font-family-light;
+	font-weight: $font-weight-light;
+}
+
+// Medium / 500	Med. body text and btn label	Body Medium example
+.alt {
+	font-size: 1.7rem;
+	font-family: $font-family-medium;
+	font-weight: $font-weight-medium;
+}
+
+// Regular / 400	Status bar	Body Small example
+.small {
+	font-size: 1.5rem;
+}
+
+// Regular / 400	Fine print and status bar	Body Mini example
+.mini {
+	font-size: 1.4rem;
+} 
+
+// Regular / 400	Application icon label	Body Micro example
+.micro {
+	font-size: 1.3rem;
+}

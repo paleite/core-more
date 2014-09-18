@@ -6,11 +6,25 @@
 //== Grid system
 
 //** Number of columns in the grid.
-$grid-columns:              12 !default;
+$grid-columns:          12 !default;
 //** Padding between columns. Gets divided in half for the left and right.
-$grid-gutter-width:         30px !default;
+$grid-gutter-width:     30px !default;
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.
 //$grid-float-breakpoint:     $screen-sm-min !default;
 //** Point at which the navbar begins collapsing.
 //$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+//** By default, this inherits from the `<body>`.
+$font-family-light:     inherit !default;
+$font-weight-light:     300 !default;
+
+$font-family-regular:   inherit !default;
+$font-weight-regular:   400 !default;
+
+$font-family-medium:    inherit !default;
+$font-weight-medium:    500 !default;
+
+$font-family-bold:      inherit !default;
+$font-weight-bold:      700 !default;
+

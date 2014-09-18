@@ -45,7 +45,7 @@ module.exports = function(grunt) {
     autoprefixer: {
       core: {
        options: {
-        map: true
+        map: true 
       },
       files: [{
         expand: true,
@@ -54,6 +54,16 @@ module.exports = function(grunt) {
         dest: 'dist/',
         ext: '.css',
       }]
+    },
+
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          keepalive: true,
+          base: '.'
+        }
+      }
     }
   },
 
@@ -72,5 +82,5 @@ module.exports = function(grunt) {
   grunt.registerTask('dist-css', ['sass', 'autoprefixer', 'csscomb', 'csslint']);
 
   // Default task  
-  grunt.registerTask('default', ['dist-css']);
+  grunt.registerTask('default', ['dist-css', 'connect']);
 };
