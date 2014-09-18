@@ -1,0 +1,7 @@
+{
+	"preset": "jquery",
+
+	"excludeFiles": [ "external", "src/intro.js", "src/outro.js" ],
+	
+	"validateIndentation": "\t"
+}

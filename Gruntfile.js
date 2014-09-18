@@ -1,86 +1,117 @@
-module.exports = function(grunt) {
-	'use strict';
+module.exports = function( grunt ) {
+	"use strict";
 
-  // Force use of Unix newlines
-  grunt.util.linefeed = '\n';
+	// Force use of Unix newlines
+	grunt.util.linefeed = "\n";
 
-  // Project configuration.
-  grunt.initConfig({
-  	pkg: grunt.file.readJSON('package.json'),
-  	sass: {
-  		core: {
-        files: [{
-          expand: true,
-          cwd: 'scss/',
-          src: ['*.scss'],
-          dest: 'dist/',
-          ext: '.css'
-        }]
-      }
-    },
+	// Project configuration.
+	grunt.initConfig({
+		pkg: grunt.file.readJSON("package.json"),
+		jsonlint: {
+			pkg: {
+				src: [ "package.json" ]
+			},
+			jshintrc: {
+				src: [ ".jshintrc" ]
+			},
+			jscsrc: {
+				src: [ ".jscsrc" ]
+			},
+			csslintrc: {
+				src: [ ".csslintrc" ]
+			},
+			bower: {
+				src: [ "bower.json" ]
+			},
+			csscomb: {
+				src: [ "csscomb.json" ]
+			}
+		},
+		jshint: {
+			all: {
+				src: [
+					"src/**/*.js", "Gruntfile.js"
+				],
+				options: {
+					jshintrc: true
+				}
+			}
+		},
+		jscs: {
+			//src: "**/*.js",
+			gruntfile: "Gruntfile.js"
+		},
+		sass: {
+			core: {
+				files: [ {
+					expand: true,
+					cwd: "scss/",
+					src: [ "*.scss" ],
+					dest: "dist/",
+					ext: ".css"
+				} ]
+			}
+		},
+		csslint: {
+			options: {
+				csslintrc: ".csslintrc"
+			},
+			dist: {
+				expand: true,
+				cwd: "dist/",
+				src: [ "*.css" ]
+			}
+		},
+		csscomb: {
+			options: {
+				config: "csscomb.json"
+			},
+			dist: {
+				expand: true,
+				cwd: "dist/",
+				src: [ "*.css" ],
+				dest: "dist/"
+			}
+		},
+		autoprefixer: {
+			core: {
+				options: {
+					map: true
+				},
+				files: [ {
+					expand: true,
+					cwd: "dist/",
+					src: [ "*.css" ],
+					dest: "dist/",
+					ext: ".css"
+				} ]
+			}
+		},
+		connect: {
+			server: {
+				options: {
+					port: 9001,
+					keepalive: true,
+					base: "."
+				}
+			}
+		},
+		watch: {
+			sass: {
+				files: "scss/**/*.scss",
+				tasks: "dist-css"
+			}
+		}
+	});
 
-    csslint: {
-      options: {
-        csslintrc: '.csslintrc'
-      },
-      dist: {
-        expand: true,
-        cwd: 'dist/',
-        src: ['*.css'],
-      }
-    },
+	// These plugins provide necessary tasks.
+	require("load-grunt-tasks")(grunt, { scope: "devDependencies" });
 
-    csscomb: {
-      options: {
-        config: 'csscomb.json'
-      },
-      dist: {
-        expand: true,
-        cwd: 'dist/',
-        src: ['*.css'],
-        dest: 'dist/'
-      }
-    },
+	grunt.registerTask("dist-js", [ "jsonlint", "jshint", "jscs" ]);
 
-    autoprefixer: {
-      core: {
-       options: {
-        map: true 
-      },
-      files: [{
-        expand: true,
-        cwd: 'dist/',
-        src: ['*.css'],
-        dest: 'dist/',
-        ext: '.css',
-      }]
-    },
+	// CSS distribution task.
+	grunt.registerTask("dist-css", [ "sass", "autoprefixer", "csscomb", "csslint" ]);
 
-    connect: {
-      server: {
-        options: {
-          port: 9001,
-          keepalive: true,
-          base: '.'
-        }
-      }
-    }
-  },
-
-  watch: {
-    sass: {
-     files: 'scss/**/*.scss',
-     tasks: 'dist-css'
-   }
- }
-});
-
-  // These plugins provide necessary tasks.
-  require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
-
-  // CSS distribution task.
-  grunt.registerTask('dist-css', ['sass', 'autoprefixer', 'csscomb', 'csslint']);
-
-  // Default task  
-  grunt.registerTask('default', ['dist-css', 'connect']);
+	// Default task
+	grunt.registerTask("default", [ "dist-css", "dist-js", "connect" ]);
 };

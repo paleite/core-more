@@ -4,16 +4,10 @@
 // Inspired by Firefox OS typeface https://www.mozilla.org/en-US/styleguide/products/firefox-os/typeface/
 
 html {
-    font-size: 62.5%;
-}
-
-body {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 // Regular / 400	Headers	Heading example
-h1,
-h2,
 p,
 ul,
 .small,
@@ -24,11 +18,15 @@ ul,
 }
 
 h1 {
+	font-family: $font-family-regular;
+	font-weight: $font-weight-regular;
 	font-size: 2.5rem;
 }
 
 // Regular / 400	Subheaders, Dialog titles	Subheading example
 h2 {
+	font-family: $font-family-regular;
+	font-weight: $font-weight-regular;
 	font-size: 1.6rem;
 }
 
