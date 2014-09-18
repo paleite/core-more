@@ -7,72 +7,87 @@ module.exports = function( grunt ) {
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
+
 		jsonlint: {
-			pkg: {
-				src: [ "package.json" ]
-			},
-			jshintrc: {
-				src: [ ".jshintrc" ]
-			},
-			jscsrc: {
-				src: [ ".jscsrc" ]
-			},
-			csslintrc: {
-				src: [ ".csslintrc" ]
-			},
-			bower: {
-				src: [ "bower.json" ]
-			},
-			csscomb: {
-				src: [ "csscomb.json" ]
+			all: {
+				src: [
+					"package.json",
+					".jshintrc",
+					".jscsrc",
+					".csslintrc",
+					"bower.json",
+					"csscomb.json"
+				]
 			}
 		},
+
 		jshint: {
 			all: {
 				src: [
-					"src/**/*.js", "Gruntfile.js"
+					"js/**/*.js", "Gruntfile.js"
 				],
 				options: {
 					jshintrc: true
 				}
 			}
 		},
+
 		jscs: {
-			//src: "**/*.js",
+			src: "js/**/*.js",
 			gruntfile: "Gruntfile.js"
 		},
+
+		uglify: {
+			options: {
+				preserveComments: "some",
+				sourceMap: true
+			},
+
+			core: {
+				files: [ {
+					expand: true,
+					cwd: "js",
+					src: "**/*.js",
+					dest: "dest/js"
+				} ]
+			}
+		},
+
 		sass: {
 			core: {
 				files: [ {
 					expand: true,
 					cwd: "scss/",
 					src: [ "*.scss" ],
-					dest: "dist/",
+					dest: "dist",
 					ext: ".css"
 				} ]
 			}
 		},
+
 		csslint: {
 			options: {
 				csslintrc: ".csslintrc"
 			},
 			dist: {
 				expand: true,
-				cwd: "dist/",
+				cwd: "dist",
 				src: [ "*.css" ]
 			}
 		},
+
 		csscomb: {
 			options: {
 				config: "csscomb.json"
 			},
 			dist: {
 				expand: true,
-				cwd: "dist/",
+				cwd: "dist",
 				src: [ "*.css" ],
-				dest: "dist/"
+				dest: "dist"
 			}
 		},
+
 		autoprefixer: {
 			core: {
 				options: {
@@ -80,13 +95,14 @@ module.exports = function( grunt ) {
 				},
 				files: [ {
 					expand: true,
-					cwd: "dist/",
+					cwd: "dist",
 					src: [ "*.css" ],
-					dest: "dist/",
+					dest: "dist",
 					ext: ".css"
 				} ]
 			}
 		},
+
 		connect: {
 			server: {
 				options: {
@@ -96,6 +112,7 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+
 		watch: {
 			sass: {
 				files: "scss/**/*.scss",
@@ -111,7 +128,8 @@ module.exports = function( grunt ) {
 	// These plugins provide necessary tasks.
 	require("load-grunt-tasks")(grunt, { scope: "devDependencies" });
 
-	grunt.registerTask("dist-js", [ "jsonlint", "jshint", "jscs" ]);
+	// Javascript distribution task.
+	grunt.registerTask("dist-js", [ "jsonlint", "jshint", "jscs", "uglify" ]);
 
 	// CSS distribution task.
 	grunt.registerTask("dist-css", [ "sass", "autoprefixer", "csscomb", "csslint" ]);
