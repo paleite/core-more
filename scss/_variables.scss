@@ -3,28 +3,68 @@
 // --------------------------------------------------
 
 
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-darker:            lighten(#000, 13.5%) !default; // #222
+$gray-dark:              lighten(#000, 20%) !default;   // #333
+$gray:                   lighten(#000, 33.5%) !default; // #555
+$gray-light:             lighten(#000, 46.7%) !default; // #777
+$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
+
+$brand-primary:         #428bca !default;
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               #fff !default;
+//** Global text color on `<body>`.
+$text-color:            $gray-dark !default;
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+//** By default, this inherits from the `<body>`.
+$font-family:           Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+
+$font-size-base:        14px !default;
+
+$font-family-light:     $font-family, inherit !default;
+$font-weight-light:     300 !default;
+
+$font-family-regular:   $font-family, inherit !default;
+$font-weight-regular:   400 !default;
+
+$font-family-medium:    $font-family, inherit !default;
+$font-weight-medium:    500 !default;
+
+$font-family-bold:      $font-family, inherit !default;
+$font-weight-bold:      700 !default;
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base:      20/14 !default; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+$line-height-computed:  floor(($font-size-base * $line-height-base)) !default; // ~20px
+
 //== Grid system
 
 //** Number of columns in the grid.
 $grid-columns:          12 !default;
 //** Padding between columns. Gets divided in half for the left and right.
 $grid-gutter-width:     30px !default;
-// Navbar collapse
-//** Point at which the navbar becomes uncollapsed.
-//$grid-float-breakpoint:     $screen-sm-min !default;
-//** Point at which the navbar begins collapsing.
-//$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
 
-//** By default, this inherits from the `<body>`.
-$font-family-light:     inherit !default;
-$font-weight-light:     300 !default;
+//== Animation
 
-$font-family-regular:   inherit !default;
-$font-weight-regular:   400 !default;
-
-$font-family-medium:    inherit !default;
-$font-weight-medium:    500 !default;
-
-$font-family-bold:      inherit !default;
-$font-weight-bold:      700 !default;
-
+//** Speed of animations
+$transition-fast:       #{(1/4)}s;

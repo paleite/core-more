@@ -4,7 +4,7 @@
 // Inspired by Firefox OS typeface https://www.mozilla.org/en-US/styleguide/products/firefox-os/typeface/
 
 html {
-	font-size: 14px;
+	font-size: 10px;
 }
 
 // Regular / 400	Headers	Heading example
@@ -20,19 +20,24 @@ ul,
 h1 {
 	font-family: $font-family-regular;
 	font-weight: $font-weight-regular;
-	font-size: 2.5rem;
+	font-size: 6rem;
+	margin-top: $line-height-computed;
+	margin-bottom: ($line-height-computed / 2);
 }
 
 // Regular / 400	Subheaders, Dialog titles	Subheading example
 h2 {
 	font-family: $font-family-regular;
 	font-weight: $font-weight-regular;
-	font-size: 1.6rem;
+	font-size: 3rem;
+	margin-top: $line-height-computed;
+	margin-bottom: ($line-height-computed / 2);
 }
 
 p,ul {
 	// Regular / 400	Body text, lists, default size	Body example
 	font-size: 1.9rem;
+	margin: 0 0 ($line-height-computed / 2);
 }
 
 // Light / 300	Dialogs	Body Large example
@@ -62,4 +67,18 @@ p,ul {
 // Regular / 400	Application icon label	Body Micro example
 .micro {
 	font-size: 1.3rem;
+}
+
+// Lists
+// -------------------------
+
+// Unordered and Ordered lists
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: ($line-height-computed / 2);
+  ul,
+  ol {
+	margin-bottom: 0;
+  }
 }

@@ -6,14 +6,14 @@
 // Container width
 
 .container {
-  @include container-fixed();
+	@include container-fixed();
 }
 
 
 // Row
 
 .row {
-  @include make-row();
+	@include make-row();
 }
 
 
