@@ -65,14 +65,18 @@ module.exports = function( grunt ) {
 			}
 		},
 
-		csslint: {
-			options: {
-				csslintrc: ".csslintrc"
-			},
-			dist: {
-				expand: true,
-				cwd: "dist",
-				src: [ "*.css" ]
+		autoprefixer: {
+			core: {
+				options: {
+					map: true
+				},
+				files: [ {
+					expand: true,
+					cwd: "dist",
+					src: [ "*.css" ],
+					dest: "dist",
+					ext: ".css"
+				} ]
 			}
 		},
 
@@ -88,18 +92,14 @@ module.exports = function( grunt ) {
 			}
 		},
 
-		autoprefixer: {
-			core: {
-				options: {
-					map: true
-				},
-				files: [ {
-					expand: true,
-					cwd: "dist",
-					src: [ "*.css" ],
-					dest: "dist",
-					ext: ".css"
-				} ]
+		csslint: {
+			options: {
+				csslintrc: ".csslintrc"
+			},
+			dist: {
+				expand: true,
+				cwd: "dist",
+				src: [ "*.css" ]
 			}
 		},
 
