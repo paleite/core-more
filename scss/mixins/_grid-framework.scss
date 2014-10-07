@@ -24,12 +24,16 @@
 	}
 }
 
+@mixin auto-grid-column() {
+	flex: 1 1 0;
+}
+
 @mixin loop-grid-columns($columns) {
 	@for $i from 0 through $columns {
 		@include calc-grid-column($i);
 	}
 	.col-auto {
-		flex: 1 1 0;
+		@include auto-grid-column();
 	}
 }
 

@@ -1,3 +1,20 @@
 //
 // Nav
 // --------------------------------------------------
+
+nav {
+	@include container-fixed();
+	> ul {
+		@include make-row();
+		list-style: none;
+		padding: 0;
+		margin-bottom: 0;
+		> li {
+			@include auto-grid-column();
+			a {
+				display: block;
+				text-align: center;
+			}
+		}
+	}
+}
