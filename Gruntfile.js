@@ -1,6 +1,13 @@
 module.exports = function( grunt ) {
 	"use strict";
 
+	// TODO: Replace paths throughout this document and replace with this variable
+	var paths = {
+		css: {
+			end: "dist"
+		}
+	};
+
 	// Force use of Unix newlines
 	grunt.util.linefeed = "\n";
 
@@ -39,8 +46,7 @@ module.exports = function( grunt ) {
 
 		uglify: {
 			options: {
-				preserveComments: "some",
-				sourceMap: true
+				preserveComments: "some"
 			},
 
 			core: {
@@ -67,9 +73,6 @@ module.exports = function( grunt ) {
 
 		autoprefixer: {
 			core: {
-				options: {
-					map: true
-				},
 				files: [ {
 					expand: true,
 					cwd: "dist",
@@ -100,6 +103,17 @@ module.exports = function( grunt ) {
 				expand: true,
 				cwd: "dist",
 				src: [ "*.css" ]
+			}
+		},
+
+		concat: {
+			css: {
+				src: [
+					"bower_components/normalize.css/normalize.css",
+					paths.css.end + "/core.css"
+				],
+				dest: paths.css.end + "/core.css",
+				nonull: true
 			}
 		},
 
@@ -135,7 +149,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask("dist-js", [ "jsonlint", "jshint", "jscs", "uglify" ]);
 
 	// CSS distribution task.
-	grunt.registerTask("dist-css", [ "sass", "autoprefixer", "csscomb", "csslint" ]);
+	grunt.registerTask("dist-css", [ "sass", "autoprefixer", "csscomb", "csslint", "concat:css" ]);
 
 	// Default task
 	grunt.registerTask("default", [ "dist-css", "dist-js", "connect" ]);
