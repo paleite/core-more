@@ -1,6 +1,8 @@
 {
   "box-sizing": false,
   "compatible-vendor-prefixes": false,
+  "font-sizes": false,
   "outline-none": false,
+  "unique-headings": false,
   "unqualified-attributes": false
 }
